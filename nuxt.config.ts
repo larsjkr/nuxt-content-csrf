@@ -6,5 +6,6 @@ export default defineNuxtConfig({
   security: {
     csrf: true,
     enabled: true,
+    removeLoggers: false,
   },
 });

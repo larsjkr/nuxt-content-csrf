@@ -1,75 +1,21 @@
-# Nuxt Minimal Starter
+# Nuxt CSRF Token Mismatch MRE
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## How to reproduce CSRF token mismatch error
 
-## Setup
+1. Run `pnpm install` <br>
 
-Make sure to install dependencies:
+2. Run `pnpm build` <br>
 
-```bash
-# npm
-npm install
+3. Run `node .output/server/index.mjs` <br>
 
-# pnpm
-pnpm install
+4. Go to `http://localhost:3000/`
 
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+5. You should the see CSRF Token mismatch error in the terminal. Something similar to
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+Failed to fetch foo data FetchError: [POST] "/__nuxt_content/foo/query?v=v3.5.0--dCunU9R2JNrcjwVr1V_fS-0vV-gBdgCosLC8CgWBJMg": 403 CSRF Token Mismatch
+    at async $fetch2 (file:///nuxt-content-csrf/.output/server/chunks/nitro/nitro.mjs:3015:15)
+    at async fetchQuery (file:///nuxt-content-csrf/.output/server/chunks/build/server.mjs:42437:10)
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+_Hint: Same behavior can be observed when running `pnpm dev` and navigating to `http://localhost:3000/`._
